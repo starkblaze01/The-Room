@@ -7,16 +7,16 @@
 int num,num2,num3;//for switch cases
 int *p,*p2;  //for back option 
 
-void dispscore(int i,int j,int s,int a)//display the score
+void dispscore(int i,int j,int s,int a){//display the score
+	int score=(i*i+j*j)*100+1000*(3-s)-(a*1);
+	printf("\t\t\t SCORE\n");
+	printf("\tSCORE %d\t\t\tLIFE %d\n\n\n",score,3-s);	
+	}
 
-				{int score=(i*i+j*j)*100+1000*(3-s)-(a*1);
-				printf("\t\t\t SCORE\n");
-	        printf("\tSCORE %d\t\t\tLIFE %d\n\n\n",score,3-s);
-	
-			}
-int  retscore(int i,int j,int s,int a)
-  			{int score=(i*i+j*j)*100+1000*(3-s)-(a*1);
-  			 return score;}
+int  retscore(int i,int j,int s,int a){
+	int score=(i*i+j*j)*100+1000*(3-s)-(a*1);
+  	return score;
+}
 
 void delay(unsigned int mseconds)
 {
@@ -24,79 +24,82 @@ void delay(unsigned int mseconds)
     while (goal > clock());
 }
 
-void prntarr(char A[20][20])//print the array
-{int i=0,j=0,s=0;
-system("color 4a");
-    while(i<20)
-        {j=0;
-         while(j<20){printf("%c  ",A[i][j]);
-                    j++;}
-         i++;
-         printf("\n\n");}
-         printf("\n\n");
-         
+void prntarr(char A[20][20]){//print the array
+	int i=0,j=0,s=0;
+	system("color 4a");
+        while(i<20)
+        {	j=0;
+         	while(j<20){printf("%c  ",A[i][j]);
+                j++;
+	}
+        i++;
+        printf("\n\n");}
+        printf("\n\n");
 }
 
-void timeconv(int a)//convert sec into HH:MM:SS format
-			{ int sec,min,hour;
-			  min=a/60;
-			  hour=a/3600;
-			  while(a>=60){a=a-60;}
-			  printf("You Have Taken time %02d:%02d:%d\n\n",hour,min,a);
-		}
+void timeconv(int a){//convert sec into HH:MM:SS format
+	int sec,min,hour;
+	min=a/60;
+	hour=a/3600;
+	while(a>=60){a=a-60;}
+	printf("You Have Taken time %02d:%02d:%d\n\n",hour,min,a);
+	}
 			               
-void chngarr(char A[20][20],int a,int t[3][2][100],int b)//changes '.' to '#' 
-{int i=0;
-while(i<b)
- {A[t[a][0][i]][t[a][1][i]]='#';
-
-   i++;}
-
+void chngarr(char A[20][20],int a,int t[3][2][100],int b){//changes '.' to '#' 
+	int i=0;
+	while(i<b){
+		A[t[a][0][i]][t[a][1][i]]='#';
+   		i++;
+	}
 }
 
-void rechngarr(char A[20][20],int a,int t[3][2][100],int b)//changes '#' to '.'
-{int i=0;
-while(i<b)
- {A[t[a][0][i]][t[a][1][i]]='.';
-   i++;}
-
+void rechngarr(char A[20][20],int a,int t[3][2][100],int b){//changes '#' to '.'
+	int i=0;
+	while(i<b){
+ 		A[t[a][0][i]][t[a][1][i]]='.';
+   		i++;
+	}
 }
-void instr()
-{ printf("\t\t\t\tINSTRUCTIONS\n\n        \t\t1. PRESS- 'W' TO MOVE UP\n        \t\t          'S' TO MOVE DOWN\n        \t\t          'A' TO MOVE LEFT\n        \t\t          'D' TO MOVE RIGHT\n	\t\t2. '.' IS CHANGING INTO '#' AT PARTICULAR TIME INTERVAL\n	\t\t3. YOU LOSE ONE LIFE IF YOU STEPPED ON '#'\n	\t\t4. REACH AT POSITION 'E' TO WIN THE GAME\n        \t\t5. THREE LIVES HAS BEEN GIVEN FOR EACH NEW GAME\n	\t\t6. TO SCORE HIGH- a) COVER MORE DISTANCE\n	\t\t	          b) USE LESS LIVES\n\t\t  		          c) COMPLETE THE GAME IN LESS TIME\n");
-   delay(5000);}
+
+void instr(){
+	printf("\t\t\t\tINSTRUCTIONS\n\n        \t\t1. PRESS- 'W' TO MOVE UP\n        \t\t          'S' TO MOVE DOWN\n        \t\t          'A' TO MOVE LEFT\n        \t\t          'D' TO MOVE RIGHT\n	\t\t2. '.' IS CHANGING INTO '#' AT PARTICULAR TIME INTERVAL\n	\t\t3. YOU LOSE ONE LIFE IF YOU STEPPED ON '#'\n	\t\t4. REACH AT POSITION 'E' TO WIN THE GAME\n        \t\t5. THREE LIVES HAS BEEN GIVEN FOR EACH NEW GAME\n	\t\t6. TO SCORE HIGH- a) COVER MORE DISTANCE\n	\t\t	          b) USE LESS LIVES\n\t\t  		          c) COMPLETE THE GAME IN LESS TIME\n");
+   	delay(5000);
+}
 
 
 
 
 
-int main()
-{FILE *b10;//save records
-char A[20][20]={' '};
-char name[100];
-int t[3][2][100],sc[3];// 3D array for delay and sc for leaderboard 
-sc[0]=sc[1]=sc[2]=0;
-int ai=19,aj=0,re;
-time_t a,b,td;//records time and difference 
-int n=1,m=1,o=1;
-char ch,s;
-int i=0,j=0,tstore;
-system("COLOR 4F");
-printf("\n\n\n\n\n\n\n\t\t\t\t---------------------------------------------------\n\t\t\t\t|\t\t\tMENU\t\t\t  |\n\t\t\t\t---------------------------------------------------");
-printf("\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t|\t\t    1.Start Game\t\t  |\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t|\t\t    2.Leaderboard\t\t  |\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t|\t\t    3.Quit\t\t\t  |\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t---------------------------------------------------\n\t\t\t\t");
+int main(){
+	FILE *b10;//save records
+	char A[20][20]={' '};
+	char name[100];
+	int t[3][2][100],sc[3];// 3D array for delay and sc for leaderboard 
+	sc[0]=sc[1]=sc[2]=0;
+	int ai=19,aj=0,re;
+	time_t a,b,td;//records time and difference 
+	int n=1,m=1,o=1;
+	char ch,s;
+	int i=0,j=0,tstore;
+	system("COLOR 4F");
+	printf("\n\n\n\n\n\n\n\t\t\t\t---------------------------------------------------\n\t\t\t\t|\t\t\tMENU\t\t\t  |\n\t\t\t\t---------------------------------------------------");
+	printf("\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t|\t\t    1.Start Game\t\t  |\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t|\t\t    2.Leaderboard\t\t  |\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t|\t\t    3.Quit\t\t\t  |\n\t\t\t\t|\t\t\t\t\t\t  |\n\t\t\t\t---------------------------------------------------\n\t\t\t\t");
 
-if(p==NULL)
-{scanf("%d",&num);}
-system("cls");
+	if(p==NULL){
+		scanf("%d",&num);}
+		system("cls");
 
-switch(num)
-		{case 1: printf("\n\n\t\t\t\t\tDifficulty level\n\n\t\t1.Beginner\n\n\t\t2.Amateur\n\n\t\t3.Advance\n\n\t\t0.Back\n\n\n\t\t");
+		switch(num)
+		{
+			case 1: printf("\n\n\t\t\t\t\tDifficulty level\n\n\t\t1.Beginner\n\n\t\t2.Amateur\n\n\t\t3.Advance\n\n\t\t0.Back\n\n\n\t\t");
 				if(p2==NULL)
-				{scanf("%d",&num2);}
-		        system("cls");
-		        switch(num2)
-		             {
-		        	case 1:printf("\n\n\t\t\t\t\tSelect Grid Size\n\n\t\t1.10*10\n\n\t\t2.15*15\n\n\t\t3.20*20\n\n\t\t0.BACK\n\n\t\t");
-		        	       if(p2==NULL)
+				{
+					scanf("%d",&num2);}
+		        		system("cls");
+		        		switch(num2)
+		             		{
+		        		case 1:printf("\n\n\t\t\t\t\tSelect Grid Size\n\n\t\t1.10*10\n\n\t\t2.15*15\n\n\t\t3.20*20\n\n\t\t0.BACK\n\n\t\t");
+		        	       	if(p2==NULL)
 						    {scanf("%d",&num3);}
 		        	        system("cls");
 		        	        switch(num3)
