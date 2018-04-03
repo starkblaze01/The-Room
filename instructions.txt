@@ -1,0 +1,15 @@
+
+    printf("\t\t\t\tINSTRUCTIONS\n\n
+        \t\t1. PRESS- 'W' TO MOVE UP\n
+        \t\t          'S' TO MOVE DOWN\n
+        \t\t          'A' TO MOVE LEFT\n
+        \t\t          'D' TO MOVE RIGHT\n
+	\t\t2. '.' IS CHANGING INTO '#' AT PARTICULAR TIME INTERVAL\n
+	\t\t3. YOU LOSE ONE LIFE IF YOU STEPPED ON '#'\n
+	\t\t4. REACH AT POSITION 'E' TO WIN THE GAME\n
+        \t\t5. THREE LIVES HAS BEEN GIVEN FOR EACH NEW GAME\n
+	\t\t6. TO SCORE HIGH- a) COVER MORE DISTANCE\n
+	\t\t		      b) USE LESS LIVES\n
+	\t\t  		      c) COMPLETE THE GAME IN LESS TIME\n");
+
+		  
